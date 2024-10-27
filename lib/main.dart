@@ -1,71 +1,102 @@
 import 'package:flutter/material.dart';
+import 'login.dart'; // Mengimpor halaman login
 
 void main() {
-  runApp(const MyApp());
+  runApp(ECommerceApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class ECommerceApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Toko Fashion Wanita',
       theme: ThemeData(
-        
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        primarySwatch: Colors.pink,
       ),
-      home: const MyHomePage(),
+      home: const MainPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+// Halaman Utama
+class MainPage extends StatelessWidget {
+  const MainPage({Key? key}) : super(key: key); // Tambahkan parameter key
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Beranda"),backgroundColor: Colors.blue),
+      appBar: AppBar(
+        title: const Text('Selamat Datang di Toko Fashion'),
+        backgroundColor: Colors.pinkAccent,
+        centerTitle: true,
+      ),
       body: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.pink.shade100, Colors.white],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         child: Column(
-          children:[
-            Text("Nama : Fadila Nur Kamala"),
-            Text("NIM : 220112001"),
-            Text("Prodi : Sistem Informasi"),
-            ElevatedButton(
-              onPressed: () {
-                // Aksi yang akan dijalankan ketika tombol ditekan
-              },
-              child: Text('Klik Saya'),
-            ),
-            TextButton(
-              onPressed: () {
-                // Aksi yang akan dijalankan ketika tombol ditekan
-              },
-              child: Text('Klik Saya'),
-            ),
-            IconButton(
-              icon: Icon(Icons.add),
-              onPressed: () {
-                // Aksi yang akan dijalankan ketika ikon ditekan
-              },
-            ),
-            TextField(
-              decoration: InputDecoration(
-              labelText: 'Nama',
-              hintText: 'Masukkan nama Anda',
-              border: OutlineInputBorder(),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                children: [
+                  Image.network(
+                    'img.freepik.com/free-vector/fashion-sale-banners-with-photo_52683-9828.jpg',
+                    height: 150,
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Temukan Tren Terbaru!",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Belanja koleksi fashion wanita eksklusif kami.",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black54,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
-              onChanged: (text) {
-                // Aksi yang dijalankan ketika teks berubah
+            ),
+            const SizedBox(height: 40),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.shopping_bag),
+              label: const Text("Mulai Belanja"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.pinkAccent, // Ganti parameter 'primary' dengan 'backgroundColor'
+                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                textStyle: const TextStyle(fontSize: 18),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LoginPage(),
+                  ),
+                );
               },
-            )
+            ),
           ],
         ),
-      ), 
+      ),
     );
   }
 }
