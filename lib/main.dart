@@ -48,7 +48,7 @@ class MainPage extends StatelessWidget {
               child: Column(
                 children: [
                   Image.network(
-                    'img.freepik.com/free-vector/fashion-sale-banners-with-photo_52683-9828.jpg',
+                    'https://marketplace.canva.com/EAFYElY5EE4/1/0/800w/canva-brown-and-white-modern-fashion-banner-landscape-2uXtgbkdkec.jpg',
                     height: 150,
                   ),
                   const SizedBox(height: 20),
