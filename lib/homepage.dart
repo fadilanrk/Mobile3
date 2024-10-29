@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
         ),
         actions: const [
           Padding(
-            padding: EdgeInsets.only(right: 16.0),
+            padding: EdgeInsets.only(right: 20.0),
             child: Icon(Icons.search, color: Colors.black),
           ),
         ],
@@ -107,11 +107,17 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
-                Image.network(
-                  'https://raw.githubusercontent.com/fadilanrk/gambarpemro/refs/heads/main/fashion%20banner.jpg',
-                  height: 150,
-                  fit: BoxFit.cover,
+                Container(
+                height: 120, // Sesuaikan tinggi sesuai kebutuhan
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      'https://raw.githubusercontent.com/fadilanrk/gambarpemro/refs/heads/main/fashion%20banner.jpg',
+                    ),
+                    fit: BoxFit.cover,
+                  ),
                 ),
+              ),
                 const SizedBox(height: 16),
                 const Text(
                   'SPRING SUMMER 2020 COLLECTION',
