@@ -1,232 +1,211 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Toko Fashion Wanita'),
-        backgroundColor: Colors.pinkAccent,
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildBanner(),
-              const SizedBox(height: 20),
-              _buildCategorySection(),
-              const SizedBox(height: 20),
-              _buildProductSection(),
-            ],
+        title: const Text(
+          'Pomelo.',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
           ),
         ),
-      ),
-      bottomNavigationBar: _buildFooter(),
-    );
-  }
-
-  // Banner promosi sederhana dengan slider
-  Widget _buildBanner() {
-    return Container(
-      height: 200,
-      decoration: BoxDecoration(
-        color: Colors.pinkAccent.withOpacity(0.2),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: PageView(
-        children: [
-          _buildBannerItem(
-            'Sepatu & Tas Wanita Eksklusif',
-            'Diskon Hingga 50%!',
-            'http://graphicgoogle.com/wp-content/uploads/2017/10/Facebook-Fashion-Big-Sale-Banner.jpg',
-          ),
-          _buildBannerItem(
-            'Koleksi Musim Panas Terbaru',
-            'Fashion yang Memikat!',
-            'https://marketplace.canva.com/EAFGKRRskMs/1/0/1600w/canva-brown-and-beige-minimalist-fashion-banner-lYcbGpUSVGo.jpg',
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        leading: const Icon(
+          Icons.qr_code_scanner,
+          color: Colors.black,
+        ),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 16.0),
+            child: Icon(Icons.search, color: Colors.black),
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildBannerItem(String title, String subtitle, String imageUrl) {
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(
-              image: NetworkImage(imageUrl),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                subtitle,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  // Kategori produk
-  Widget _buildCategorySection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Kategori',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _buildCategoryItem('Sepatu', Icons.directions_walk),
-            _buildCategoryItem('Tas', Icons.shopping_bag),
-            _buildCategoryItem('Aksesoris', Icons.watch),
-          ],
-        ),
-      ],
-    );
-  }
-
-  // Widget kategori produk
-  Widget _buildCategoryItem(String label, IconData icon) {
-    return Column(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.pinkAccent.withOpacity(0.2),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: CircleAvatar(
-            backgroundColor: Colors.transparent,
-            radius: 30,
-            child: Icon(icon, color: Colors.pinkAccent, size: 30),
-          ),
-        ),
-        const SizedBox(height: 5),
-        Text(label),
-      ],
-    );
-  }
-
-  // Daftar produk populer
-  Widget _buildProductSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Produk Populer',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 10),
-        GridView.count(
-          crossAxisCount: 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          children: [
-            _buildProductItem('Sepatu Stylish', 'https://down-id.img.susercontent.com/file/sg-11134201-22110-qnkktikyepjv57', 59.99),
-            _buildProductItem('Tas Elegan', 'https://down-id.img.susercontent.com/file/sg-11134201-23020-1yhm4cjj2knv43', 79.99),
-            _buildProductItem('Sneakers Trendy', 'https://down-id.img.susercontent.com/file/id-11134207-7qukz-lfryeqdtr4sd34', 49.99),
-            _buildProductItem('Backpack Fashion', 'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKr_06rcqOKU/v2/-1x-1.jpg', 69.99),
-          ],
-        ),
-      ],
-    );
-  }
-
-  // Widget item produk
-  Widget _buildProductItem(String name, String imageUrl, double price) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      elevation: 5,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: Column(
         children: [
-          Container(
-            height: 100,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
-              image: DecorationImage(
-                image: NetworkImage(imageUrl),
-                fit: BoxFit.cover,
+          // Bagian Kategori
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: const [
+                  IconCategory(icon: Icons.checkroom, label: 'Tops'),
+                  IconCategory(icon: Icons.work_outline, label: 'Bottoms'), // Ganti Icons.pants dengan Icons.work_outline
+                  IconCategory(icon: Icons.desk, label: 'Dresses'),
+                  IconCategory(icon: Icons.sports, label: 'Sportswear'),
+                  IconCategory(icon: Icons.backpack, label: 'Bags'),
+                ],
               ),
             ),
           ),
+          // Bagian Tab "Discover" dan "Lookbooks"
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Row(
               children: [
-                Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
-                const SizedBox(height: 5),
-                Text('\$$price', style: const TextStyle(color: Colors.pinkAccent)),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Colors.black,
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        'DISCOVER',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Colors.grey,
+                          width: 1,
+                        ),
+                      ),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        'LOOKBOOKS',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // Gambar Koleksi Terbaru
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                Image.network(
+                  'https://raw.githubusercontent.com/fadilanrk/gambarpemro/refs/heads/main/fashion%20banner.jpg',
+                  height: 150,
+                  fit: BoxFit.cover,
+                ),
+                const SizedBox(height: 16),
+                const Text(
+                  'SPRING SUMMER 2020 COLLECTION',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  'Bring on the fun with our latest Spring Summer 2020 Collection featuring our #POMELOGIRLS!',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black54,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black, // Ganti backgroundColor dengan primary
+                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  onPressed: () {
+                    // Aksi untuk tombol SHOP COLLECTION
+                  },
+                  child: const Text(
+                    'SHOP COLLECTION',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
+                ),
               ],
             ),
           ),
         ],
       ),
+      // Bottom Navigation Bar
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shop),
+            label: 'Shop',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.explore),
+            label: 'Discover',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.menu),
+            label: 'More',
+          ),
+        ],
+      ),
     );
   }
+}
 
-  // Footer
-  Widget _buildFooter() {
-    return BottomAppBar(
-      color: Colors.pinkAccent,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+// Widget untuk ikon kategori
+class IconCategory extends StatelessWidget {
+  final IconData icon;
+  final String label;
+
+  const IconCategory({Key? key, required this.icon, required this.label}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: Column(
         children: [
-          IconButton(
-            icon: const Icon(Icons.home),
-            color: Colors.white,
-            onPressed: () {},
+          CircleAvatar(
+            radius: 30,
+            backgroundColor: Colors.black,
+            child: Icon(icon, color: Colors.white, size: 28),
           ),
-          IconButton(
-            icon: const Icon(Icons.favorite),
-            color: Colors.white,
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.shopping_cart),
-            color: Colors.white,
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.person),
-            color: Colors.white,
-            onPressed: () {},
-          ),
+          const SizedBox(height: 8),
+          Text(label, style: const TextStyle(fontSize: 14, color: Colors.black87)),
         ],
       ),
     );
